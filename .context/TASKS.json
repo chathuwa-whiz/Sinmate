@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project": "Sinmate",
-  "last_updated": "2026-10-26 17:21 UTC",
+  "last_updated": "2026-10-26 19:35 UTC",
   "tasks": [
     {
       "id": "TASK-001",
@@ -110,6 +110,54 @@
         "dpo"
       ],
       "completed_at": "2026-10-26 08:22 UTC"
+    },
+    {
+      "id": "TASK-009",
+      "title": "Teacher-batch ingest script (scripts/ingest_teacher_batches.py)",
+      "description": "Read reviewed teacher JSONL (output of scripts/apply_critic_verdicts.py, e.g. data/accepted_dialogs.jsonl). Validate schema + rules, map free-text categories onto the 9 ADR-006 categories (or drop the field), flag hearsay/health-claim/gendered lines for review, NFC, dedupe, inject the exact COMPACT_PERSONA_LINES system prompt per persona (one variant only), assign sinmate_NNNNN ids, split train/val, print stats vs the target mix in docs/dataset_generation_prompts.md. Also build DPO pairs from data/rejected_dialogs.jsonl (line n = nth accepted dialogue).",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "dataset",
+        "tooling"
+      ]
+    },
+    {
+      "id": "TASK-010",
+      "title": "Scale teacher dataset: targeted batches (grief, crisis, identity, panic) then ~1,000-4,000 dialogues",
+      "description": "Pilot (73 accepted) has 0 grief_and_loss, 0 crisis_support, 0 identity_honesty, only 5 panic. Run Prompt 2 for those first, with 3 added lines: category must come from the allowed list; no hearsay/health claims; mother persona prefers දරුවෝ/ඔයා over පුතේ. User (native speaker) must read all crisis/grief dialogues in full. Then Prompt 3 (critic) -> scripts/apply_critic_verdicts.py -> ingest.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "dataset",
+        "human-in-loop"
+      ]
+    },
+    {
+      "id": "TASK-011",
+      "title": "ADR-006 cognitive pipeline stages 1-3 and 5 (input type, emotion, category, guardrail)",
+      "description": "No code exists yet for stage 1 (input type), 2 (emotion), 3 (category) and 5 (deterministic guardrail). Brain currently does persona + generate only. See .context/ARCHITECTURE.md section 3 and ADR-006.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "brain",
+        "pipeline"
+      ]
+    },
+    {
+      "id": "TASK-012",
+      "title": "Fine-tune v2 + GGUF export + live re-test against Brain",
+      "description": "After the dataset is rebuilt: add response-only loss masking to notebook 02, retrain on Colab T4 (fp32 compute, auto-detected), export GGUF, import into Ollama, rerun the Brain live test against it. Also: remove Example: lines from PERSONA_PROMPTS (base model copies them), fix the \\u0DCAF typo in normalizer.py Yansaya regex, make tests/TestRunner stop appending 'Automated test message' to .context/BLACKBOARD.md.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "training",
+        "colab"
+      ]
     }
   ]
 }

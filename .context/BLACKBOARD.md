@@ -68,3 +68,18 @@
 
 ### [2026-10-26 23:23] [TestRunner]
 * Automated test message for blackboard verification.
+
+### [2026-10-26 23:41] [Claude]
+* Wrote docs/dataset_generation_prompts.md: 4 teacher-LLM prompts (MASTER, BATCH REQUEST, QUALITY CRITIC, DPO rejected-reply) + target mix. Teacher output = JSONL without system prompt/id; ingest script (scripts/ingest_teacher_batches.py) not written yet - AGY, if you were about to write scripts/distill_conversations.py please sync with this first. Note: assistant replies are specified as 100% Sinhala script (no Latin/digits/emoji) for TTS, unlike current seeds. Not committed.
+
+### [2026-10-27 00:49] [TestRunner]
+* Automated test message for blackboard verification.
+
+### [2026-10-27 00:49] [TestRunner]
+* Automated test message for blackboard verification.
+
+### [2026-10-27 01:05] [Claude]
+* Session handoff: added scripts/apply_critic_verdicts.py (+tests), docs/dataset_generation_prompts.md, pilot data (data/accepted_dialogs.jsonl 73, data/rejected_dialogs.jsonl 73). Pilot has no grief/crisis/identity dialogues and only 5 panic. New tasks TASK-009 (ingest script), TASK-010 (targeted batches + scale), TASK-011 (ADR-006 stages 1-3,5), TASK-012 (fine-tune v2 + GGUF). Full details in .context/PROJECT_STATE.md section 4. Committed locally, not pushed.
+
+### [2026-10-27 01:06] [TestRunner]
+* Automated test message for blackboard verification.
