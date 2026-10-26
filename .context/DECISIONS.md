@@ -49,3 +49,17 @@ This document records the architectural and technology decisions agreed upon for
   3. Enforce LF line endings via `.gitattributes` to avoid cross-platform Git conflicts.
 * **Consequence**: Developers and AI agents on Mac, Windows, or cloud VMs can collaborate concurrently with zero platform friction.
 
+---
+
+### ADR-006: 6-Stage Real-Time Cognitive Pipeline & Deterministic Guardrail
+* **Status**: Accepted
+* **Context**: Low-resource 1B/4B models can suffer from emotional tone blindness (e.g. responding cheerfully with slang to tragic news like a family death) and hallucinations. Relying on a second LLM to critique every response would double latency and exceed low-spec laptop CPU budgets.
+* **Decision**: Adopt a sequential 6-stage cognitive loop:
+  1. `Input Type Check` (Regex: pure_sinhala / singlish / mixed_script in <1ms)
+  2. `Emotion Classification` (Lexical analysis across 5 Sri Lankan emotional registers: grief, anxiety, burnout, joy, neutral in <2ms)
+  3. `Category Mapping` (Contextual topic matching)
+  4. `Answer Generation` (Gemma-3-1B-IT with persona + dynamic emotional directive in ~300ms)
+  5. `Deterministic Guardrail & Hallucination Double-Check` (Tone-clash interceptor preventing cheerful slang on grief, factuality/RAG memory verification, and TTS markdown cleaner in <5ms)
+  6. `Audio Output` (Sentence streaming to VITS TTS with full-duplex barge-in)
+* **Consequence**: Prevents tone-deaf blunders with zero added latency, maintaining sub-second voice turnaround on low-spec hardware.
+

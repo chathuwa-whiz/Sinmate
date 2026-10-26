@@ -41,3 +41,9 @@
 
 ### [2026-10-26 13:52] [Antigravity]
 * Completed `TASK-008`: Created data/schema.json, seed_dialogues.jsonl, generate_synthetic_dataset.py tool, generated 120 train/val dialogue splits, and created notebooks/02_colab_qlora_finetune_gemma3.ipynb.
+
+### [2026-10-26 22:39] [Antigravity]
+* Locked 6-stage Cognitive Pipeline & Deterministic Guardrail into ARCHITECTURE.md and recorded ADR-006 in DECISIONS.md.
+
+### [2026-10-26 22:40] [TestRunner]
+* Automated test message for blackboard verification.
