@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Universal launcher for Sinmate Multi-Agent Hub on macOS, Linux, and Colab
+
+# Determine repository root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Use python3 if available, else python
+if command -v python3 &>/dev/null; then
+    PYTHON_CMD="python3"
+elif command -v python &>/dev/null; then
+    PYTHON_CMD="python"
+else
+    echo "Error: Python is not installed or not in PATH." >&2
+    exit 1
+fi
+
+exec "$PYTHON_CMD" "$SCRIPT_DIR/scripts/agent_hub.py" "$@"

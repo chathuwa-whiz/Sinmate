@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SinmateConversationalDialogue",
+  "description": "Standard schema for spoken Sinhala multi-turn dialogues for Gemma-3 fine-tuning",
+  "type": "object",
+  "required": ["id", "persona", "input_type", "messages"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^sinmate_[0-9]{5,}$",
+      "description": "Unique dialogue identifier, e.g. sinmate_00001"
+    },
+    "persona": {
+      "type": "string",
+      "enum": ["BEST_FRIEND", "SPECIAL_PARTNER", "MOTHER_FIGURE", "TEACHER"],
+      "description": "Active persona personality"
+    },
+    "input_type": {
+      "type": "string",
+      "enum": ["sinhala_unicode", "singlish", "code_switched"],
+      "description": "Format of user query: pure Sinhala Unicode, Romanized Singlish, or mixed English-Sinhala"
+    },
+    "category": {
+      "type": "string",
+      "description": "Topic category, e.g. daily_checkin, emotion_support, study_help, work_stress, casual_chat"
+    },
+    "messages": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["system", "user", "assistant"]
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Message content normalized to Unicode NFC"
+          }
+        }
+      }
+    }
+  }
+}

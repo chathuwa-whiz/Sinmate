@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Multi-Agent Isolated Worktrees (Shared context is inside root .context/)
+.worktrees/
+
+# Model weights, datasets & checkpoints (Store externally or pull from HuggingFace)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.gguf
+checkpoints/
+models/
+data/raw/
+data/cache/
+data/downloads/
+
+# Audio / Media recordings and temporary outputs
+*.wav
+*.mp3
+*.flac
+*.ogg
+recordings/
+output_audio/
+
+# IDE & Editor caches
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing & Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Agent local logs & scratchpads
+.agent_scratch/
+*.log

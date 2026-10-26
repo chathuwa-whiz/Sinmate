@@ -1,0 +1,29 @@
+# Enforce LF endings across all platforms (macOS, Linux, Windows, Colab)
+* text=auto eol=lf
+
+# Explicit text files
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.ipynb text eol=lf
+*.sh text eol=lf
+agent text eol=lf
+
+# Windows specific scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bin binary
+*.pt binary
+*.safetensors binary
+*.gguf binary
+*.wav binary
+*.mp3 binary

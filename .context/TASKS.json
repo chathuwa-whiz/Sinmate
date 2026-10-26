@@ -1,0 +1,114 @@
+{
+  "version": "1.0",
+  "project": "Sinmate",
+  "last_updated": "2026-10-26 08:22 UTC",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Multi-Agent Parallel Environment & Context Engine Setup",
+      "description": "Initialize Git repository, configure .gitignore, pyproject.toml, .context/ SSOT, agent entrypoint pointers, and agent_hub CLI orchestrator.",
+      "status": "done",
+      "assigned_to": "Antigravity",
+      "locked_files": [],
+      "tags": [
+        "infra",
+        "multi-agent",
+        "tooling"
+      ],
+      "completed_at": "2026-10-26 07:34 UTC"
+    },
+    {
+      "id": "TASK-002",
+      "title": "Sinhala Tokenizer Fertility & Compression Benchmark Script",
+      "description": "Port and standardize the Google Colab token fertility script from the research PDF into scripts/evaluate_tokenizer.py for evaluating Gemma-2/3, Qwen-2.5, and SinLlama on Sinhala and Singlish sentences.",
+      "status": "done",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "tokenization",
+        "nlp",
+        "benchmark"
+      ],
+      "completed_at": "2026-10-26 08:19 UTC"
+    },
+    {
+      "id": "TASK-003",
+      "title": "Audio Ear Pipeline (Silero VAD + Faster-Whisper Sinhala STT)",
+      "description": "Implement src/sinmate/audio/vad.py and src/sinmate/audio/stt.py using Silero VAD for low-latency voice detection and Faster-Whisper with Sinhala checkpoints.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "audio",
+        "vad",
+        "stt"
+      ]
+    },
+    {
+      "id": "TASK-004",
+      "title": "Brain Engine & Spoken Sinhala Multi-Persona Templates",
+      "description": "Implement src/sinmate/brain/personas.py with four dynamic personas (Best Friend, Special Partner, Mother Figure, Teacher) and Ollama LLM client integration.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "brain",
+        "llm",
+        "personas"
+      ]
+    },
+    {
+      "id": "TASK-005",
+      "title": "Mouth Pipeline (Sinhala VITS / Piper TTS Voice Synthesis)",
+      "description": "Implement src/sinmate/tts/vits_tts.py to wrap native Sinhala VITS models and stream sentence-by-sentence synthesized audio.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "tts",
+        "audio",
+        "voice"
+      ]
+    },
+    {
+      "id": "TASK-006",
+      "title": "Heart & Memory System (SQLite Fact Store + Spontaneous Heartbeat)",
+      "description": "Implement src/sinmate/memory/db.py for conversation history and user profile facts, and src/sinmate/proactive/heartbeat.py for time/silence-based proactive conversation prompts.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "memory",
+        "proactive",
+        "scheduler"
+      ]
+    },
+    {
+      "id": "TASK-007",
+      "title": "Full-Duplex Orchestrator & Barge-In Audio Loop",
+      "description": "Integrate Ears, Brain, Mouth, and Heart into an async real-time conversation loop with immediate barge-in interruption capability.",
+      "status": "todo",
+      "assigned_to": null,
+      "locked_files": [],
+      "tags": [
+        "orchestration",
+        "realtime",
+        "full-duplex"
+      ]
+    },
+    {
+      "id": "TASK-008",
+      "title": "Conversational Sinhala Dataset Generation & SFT/DPO Pipeline",
+      "description": "Create data curation and synthetic generation scripts for 5k-10k colloquial spoken Sinhala multi-turn dialogues with conversational fillers.",
+      "status": "done",
+      "assigned_to": "Antigravity",
+      "locked_files": [],
+      "tags": [
+        "dataset",
+        "finetuning",
+        "dpo"
+      ],
+      "completed_at": "2026-10-26 08:22 UTC"
+    }
+  ]
+}
