@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project": "Sinmate",
-  "last_updated": "2026-10-26 08:22 UTC",
+  "last_updated": "2026-10-26 17:21 UTC",
   "tasks": [
     {
       "id": "TASK-001",
@@ -48,14 +48,15 @@
       "id": "TASK-004",
       "title": "Brain Engine & Spoken Sinhala Multi-Persona Templates",
       "description": "Implement src/sinmate/brain/personas.py with four dynamic personas (Best Friend, Special Partner, Mother Figure, Teacher) and Ollama LLM client integration.",
-      "status": "todo",
-      "assigned_to": null,
+      "status": "done",
+      "assigned_to": "Claude",
       "locked_files": [],
       "tags": [
         "brain",
         "llm",
         "personas"
-      ]
+      ],
+      "completed_at": "2026-10-26 17:21 UTC"
     },
     {
       "id": "TASK-005",

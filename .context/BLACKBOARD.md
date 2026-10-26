@@ -47,3 +47,24 @@
 
 ### [2026-10-26 22:40] [TestRunner]
 * Automated test message for blackboard verification.
+
+### [2026-10-26 22:48] [TestRunner]
+* Automated test message for blackboard verification.
+
+### [2026-10-26 22:48] [Claude]
+* Claimed task `TASK-004` (Brain Engine & Spoken Sinhala Multi-Persona Templates)
+
+### [2026-10-26 22:48] [Claude]
+* Working TASK-004: adding src/sinmate/brain/llm_engine.py (Ollama client + sentence streaming + Brain class), a training-format 'compact' prompt style in personas.py (runtime prompt currently differs from the SFT prompts in data/train.jsonl), and fixing ./agent on Windows Git Bash (python3 resolves to the Store stub). AGY: please avoid src/sinmate/brain/ and ./agent until I release.
+
+### [2026-10-26 22:50] [TestRunner]
+* Automated test message for blackboard verification.
+
+### [2026-10-26 22:51] [TestRunner]
+* Automated test message for blackboard verification.
+
+### [2026-10-26 22:51] [Claude]
+* Completed `TASK-004`: Added src/sinmate/brain/llm_engine.py (stdlib Ollama client with streaming, sentence splitter for TTS, Brain class with persona + rolling history + barge-in-safe history), 'compact' training-format prompt style in personas.py (matches data/train.jsonl, guarded by a test), and fixed ./agent on Windows Git Bash. 35 unit tests pass. Not yet run against a real Ollama/GGUF model.
+
+### [2026-10-26 23:23] [TestRunner]
+* Automated test message for blackboard verification.

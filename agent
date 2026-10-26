@@ -4,13 +4,18 @@
 # Determine repository root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Use python3 if available, else python
-if command -v python3 &>/dev/null; then
-    PYTHON_CMD="python3"
-elif command -v python &>/dev/null; then
-    PYTHON_CMD="python"
-else
-    echo "Error: Python is not installed or not in PATH." >&2
+# Use the first interpreter that actually runs. Checking `command -v` alone is not enough:
+# on Windows (Git Bash) python3 can resolve to the Microsoft Store stub, which exists but fails.
+PYTHON_CMD=""
+for candidate in python3 python; do
+    if command -v "$candidate" &>/dev/null && "$candidate" -c "import sys" &>/dev/null; then
+        PYTHON_CMD="$candidate"
+        break
+    fi
+done
+
+if [ -z "$PYTHON_CMD" ]; then
+    echo "Error: a working Python interpreter was not found in PATH." >&2
     exit 1
 fi
 

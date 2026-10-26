@@ -1,7 +1,7 @@
 # Sinmate Living Project State
 
 **Project**: Sinmate (Edge-Deployable Native Sinhala Conversational Voice Companion)  
-**Last Updated**: 2026-10-26 17:10 UTC
+**Last Updated**: 2026-10-26 17:53 UTC
 **Repository Branch**: `main`  
 **Current Milestone**: Phase 1 - Multi-Agent Infrastructure & Core Pipeline Scaffolding
 
@@ -24,7 +24,7 @@ Sinmate is an open-source, edge-runnable native Sinhala voice companion designed
 | **Antigravity** | `TASK-001` | Multi-Agent Parallel Environment & Context Engine Setup | `done` |
 | ***Open*** | `TASK-002` | Sinhala Tokenizer Fertility & Compression Benchmark Script | `done` |
 | ***Open*** | `TASK-003` | Audio Ear Pipeline (Silero VAD + Faster-Whisper Sinhala STT) | `todo` |
-| ***Open*** | `TASK-004` | Brain Engine & Spoken Sinhala Multi-Persona Templates | `todo` |
+| **Claude** | `TASK-004` | Brain Engine & Spoken Sinhala Multi-Persona Templates | `done` |
 | ***Open*** | `TASK-005` | Mouth Pipeline (Sinhala VITS / Piper TTS Voice Synthesis) | `todo` |
 | ***Open*** | `TASK-006` | Heart & Memory System (SQLite Fact Store + Spontaneous Heartbeat) | `todo` |
 | ***Open*** | `TASK-007` | Full-Duplex Orchestrator & Barge-In Audio Loop | `todo` |

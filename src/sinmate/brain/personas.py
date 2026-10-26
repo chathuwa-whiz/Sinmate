@@ -22,7 +22,9 @@ class PersonaRole(str, Enum):
     TEACHER = "TEACHER"
 
 
-BASE_SYSTEM_INSTRUCTION = """You are Sinmate, an affectionate, emotionally intelligent native Sinhala companion sitting right beside the user.
+SINMATE_IDENTITY = "You are Sinmate, an affectionate, emotionally intelligent native Sinhala companion sitting right beside the user."
+
+BASE_SYSTEM_INSTRUCTION = SINMATE_IDENTITY + """
 CRITICAL BEHAVIOR RULES:
 1. Always respond in natural spoken Sinhala (Kathitha Bhashawa - කතා කරන සිංහල). Never sound like formal written Sinhala (Likhitha Bhashawa) or a robotic machine translation.
 2. Keep responses very short and natural for real-time speech: strictly 1 to 2 short sentences per turn.
@@ -58,6 +60,20 @@ You are a patient, inspiring mentor and teacher.
 }
 
 
+# System prompts exactly as the SFT data (data/train.jsonl) presents them: identity line, role marker, one persona
+# line. A LoRA-tuned 1B model answers best when the runtime prompt matches its training prompt, so this is the
+# default for the fine-tuned model. Each line is a variant that occurs in the training data (the most frequent
+# one where several exist); tests/test_normalizer_and_personas.py checks they still do after the data is regenerated.
+COMPACT_PERSONA_LINES: Dict[PersonaRole, str] = {
+    PersonaRole.BEST_FRIEND: "You are the user's closest best friend. Responses must strictly be 1-2 spoken colloquial sentences with Sri Lankan fillers.",
+    PersonaRole.SPECIAL_PARTNER: "You are the user's loving partner. Soft, warm tone. Responses strictly 1-2 spoken sentences.",
+    PersonaRole.MOTHER_FIGURE: "You are a warm, nurturing maternal figure. Protective, gentle, caring, concerned about health, meals, and rest. Responses strictly 1-2 spoken colloquial sentences.",
+    PersonaRole.TEACHER: "You are a patient, inspiring mentor. Responses strictly 1-2 spoken sentences.",
+}
+
+PROMPT_STYLES = ("compact", "full")
+
+
 class PersonaManager:
     """Manages active persona states and formats prompt context."""
 
@@ -67,8 +83,19 @@ class PersonaManager:
     def set_persona(self, role: PersonaRole):
         self.current_role = role
 
-    def get_system_prompt(self, memory_context: Optional[str] = None) -> str:
-        prompt = f"{BASE_SYSTEM_INSTRUCTION}\n\n{PERSONA_PROMPTS[self.current_role]}"
+    def get_system_prompt(self, memory_context: Optional[str] = None, style: str = "full") -> str:
+        """
+        Build the system prompt for the active persona.
+
+        style="full": long rules block + detailed persona description, for base / non-fine-tuned models.
+        style="compact": the short prompt format the fine-tuned model was trained on.
+        """
+        if style == "compact":
+            prompt = f"{SINMATE_IDENTITY}\n[ROLE: {self.current_role.value}]\n{COMPACT_PERSONA_LINES[self.current_role]}"
+        elif style == "full":
+            prompt = f"{BASE_SYSTEM_INSTRUCTION}\n\n{PERSONA_PROMPTS[self.current_role]}"
+        else:
+            raise ValueError(f"Unknown prompt style {style!r}; expected one of {PROMPT_STYLES}")
         if memory_context:
             prompt += f"\n\n[USER FACTS & MEMORY CONTEXT]\n{memory_context}"
         return prompt
