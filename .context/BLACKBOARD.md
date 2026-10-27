@@ -95,3 +95,6 @@
 
 ### [2026-10-27 11:58] [Antigravity]
 * Fixed Cell 5 error in notebooks/02_colab_qlora_finetune_gemma3.ipynb by updating to native TRL conversational format with assistant_only_loss=True (and legacy fallback). Also ensured tokenizer pad_token for safe batching and fixed Cell 10 Modelfile string escaping.
+
+### [2026-10-27 12:07] [Antigravity]
+* Fixed Cell 8 in notebooks/02_colab_qlora_finetune_gemma3.ipynb by bypassing PEFT's torchao incompatibility check on Colab (<0.16.0), and added torchao>=0.16.0 to Cell 1.
