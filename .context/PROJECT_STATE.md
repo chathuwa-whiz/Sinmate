@@ -1,7 +1,7 @@
 # Sinmate Living Project State
 
 **Project**: Sinmate (Edge-Deployable Native Sinhala Conversational Voice Companion)  
-**Last Updated**: 2026-10-27 07:44 UTC
+**Last Updated**: 2026-10-27 07:53 UTC
 **Repository Branch**: `main`  
 **Current Milestone**: Phase 1 - Multi-Agent Infrastructure & Core Pipeline Scaffolding
 
@@ -62,7 +62,7 @@ Sinmate is an open-source, edge-runnable native Sinhala voice companion designed
     - Updated cell 8 to bypass pre-installed Colab torchao (<0.16) incompatibility during LoRA merge, and added torchao>=0.16.0 to cell 1.
     - Updated cell 9 with dynamic path resolution (resolve_path), vocab_size alignment, and memory-safe cmake build (-j 2) to resolve directory resolution, convert_hf_to_gguf AssertionError, and Colab kernel OOM crash during Q4_K_M GGUF quantization.
     - Added cell 10 to generate Ollama `Modelfile` with valid triple-quote syntax.
-    - Added cell 11 for real-time interactive multi-persona streaming chat (TextStreamer + 4 personas).
+    - Added cell 11 for real-time interactive multi-persona streaming chat (TextStreamer + 4 personas) with TRANSFORMERS_NO_TF=1 guard resolving protobuf/tensorflow runtime_version import error.
 - **Test Suite**: 63 unit tests pass (`python -m unittest discover -s tests`). Cleaned up blackboard test fixtures to prevent noise.
 
 ### What to do next (in order)

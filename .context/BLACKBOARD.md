@@ -104,3 +104,6 @@
 
 ### [2026-10-27 13:15] [Antigravity]
 * Updated Cell 9 in notebooks/02_colab_qlora_finetune_gemma3.ipynb with dynamic path resolution (resolves 'is not a directory' error across /content vs /content/Sinmate), and added Cell 11 for real-time interactive multi-persona streaming chat.
+
+### [2026-10-27 13:24] [Antigravity]
+* Fixed Cell 11 in notebooks/02_colab_qlora_finetune_gemma3.ipynb by setting TRANSFORMERS_NO_TF=1 and is_tf_available=False, resolving protobuf/tensorflow runtime_version ImportError during real-time model loading.
