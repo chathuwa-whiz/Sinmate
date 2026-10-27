@@ -246,9 +246,10 @@ Run these helper commands to coordinate with peers:
 1. **Cross-Platform Compatibility**: Code and scripts must run cleanly across macOS, Linux, Windows, and Google Colab.
 2. **Sinhala Unicode Normalization**: All text input/output must be normalized to Unicode NFC (`unicodedata.normalize("NFC", text)`).
 3. **Spoken Colloquial Style (Kathitha Bhashawa)**: Conversational outputs must be short (1-2 sentences), warm, and use natural Sri Lankan colloquial Sinhala with fillers, NOT formal written Sinhala (*Likhitha Bhashawa*).
-4. **Hybrid Colab Training**: Compute-heavy workloads (Gemma 3 fine-tuning, tokenization benchmarks, QLoRA, GGUF export) run in Google Colab (`notebooks/` and `requirements-colab.txt`).
+4. **Hybrid Colab Training**: Compute-heavy workloads (Gemma 3 fine-tuning, tokenization benchmarks, QLoRA, GGUF export) run in Google Colab (`notebooks/colab/` and `requirements-colab.txt`).
 5. **Memory Footprint Limit**: Local runtime RAM/VRAM must remain under 6GB (4-bit GGUF Gemma-2B/3-4B + Faster-Whisper + Sinhala VITS TTS + SQLite).
 6. **Never Overwrite Peer Work**: Check `.context/TASKS.json` before modifying files. If a file is locked or a task is `in_progress` by another agent, do not touch it.
+7. **Notebook Twin Parity (Colab + Global)**: Every notebook exists twice: `notebooks/colab/NN_colab_<name>.ipynb` (Google Colab only: Colab secrets, `!` shell magics, `/content` paths, apt) and `notebooks/global/NN_global_<name>.ipynb` (any regular Jupyter server: `%pip`, `subprocess`/`sys.executable`, no `google.colab`, Windows/macOS/Linux safe). When you change a notebook in either folder you MUST apply the equivalent change to its sibling in the same task, keeping the same cell numbers and order. Only environment-specific code may differ. A new notebook is created in both folders. Never leave one twin stale.
 """
 
     targets = [

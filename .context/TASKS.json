@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project": "Sinmate",
-  "last_updated": "2026-10-27 04:20 UTC",
+  "last_updated": "2026-10-27 12:45 UTC",
   "tasks": [
     {
       "id": "TASK-001",
@@ -152,13 +152,28 @@
       "id": "TASK-012",
       "title": "Fine-tune v2 + GGUF export + live re-test against Brain",
       "description": "After the dataset is rebuilt: add response-only loss masking to notebook 02, retrain on Colab T4 (fp32 compute, auto-detected), export GGUF, import into Ollama, rerun the Brain live test against it. Also: remove Example: lines from PERSONA_PROMPTS (base model copies them), fix the \\u0DCAF typo in normalizer.py Yansaya regex, make tests/TestRunner stop appending 'Automated test message' to .context/BLACKBOARD.md.",
-      "status": "todo",
-      "assigned_to": null,
+      "status": "done",
+      "assigned_to": "Antigravity",
       "locked_files": [],
       "tags": [
         "training",
         "colab"
-      ]
+      ],
+      "completed_at": "2026-10-27 12:45 UTC"
+    },
+    {
+      "id": "TASK-013",
+      "title": "Split notebooks into colab/ and global/ with sibling-sync rule",
+      "description": "Move existing Colab notebooks to notebooks/colab/, create Jupyter-server (non-Colab) twins in notebooks/global/, and record the rule that colab/global siblings must be updated together.",
+      "status": "done",
+      "assigned_to": "Claude",
+      "locked_files": [],
+      "tags": [
+        "notebooks",
+        "colab",
+        "infra"
+      ],
+      "completed_at": "2026-10-27 12:09 UTC"
     }
   ]
 }

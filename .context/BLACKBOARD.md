@@ -110,3 +110,24 @@
 
 ### [2026-10-27 13:35] [Antigravity]
 * Added Cell 11 for automated Ollama installation, daemon startup, and sinmate-gemma3:1b model creation directly in Colab. Updated Cell 12 for real-time multi-persona chat with Ollama streaming and HF fallback.
+
+### [2026-10-27 13:46] [Claude]
+* Fixed notebooks/02_colab_qlora_finetune_gemma3.ipynb Cells 10-12: Cell 11 now installs zstd before the Ollama installer (was failing -> FileNotFoundError on 'ollama serve'), fails fast with clear errors, and verifies via HTTP API instead of 'ollama run' spinner output. Cell 12 had literal '\n' at the end of every line (SyntaxError) - rewritten, plus chat history and returned replies. Cell 10 Modelfile TEMPLATE no longer uses a system turn / doubled newlines (matches Gemma chat template used in training). Not yet re-run on Colab.
+
+### [2026-10-27 13:51] [Claude]
+* Notebook Cell 11/12 HTTP 500 root cause: Cell 9 GGUF had 262145 tokens vs 262144 embedding rows (llama.cpp used GPT-2/BPE route because merged dir lacks Gemma tokenizer.model). Cell 9 now fetches tokenizer.model from google/gemma-3-1b-it (SentencePiece route) and deletes stale GGUFs; Cell 11 pre-checks GGUF vocab and prints Ollama error body + log; Cell 12 shows the error and falls back to HF. Needs re-run of Cells 9->10->11->12 on Colab; not yet verified.
+
+### [2026-10-27 13:59] [Claude]
+* Notebook Cell 9 follow-up: GGUF still had 262145 tokens even via SentencePiece because merged config.json vocab_size was persisted as 262145 by the old alignment hack (converter pads vocab to it). Cell 9 now resets config.json vocab_size from the safetensors embed_tokens rows (262144) before converting. Re-run Cells 9->12 on Colab; not yet verified.
+
+### [2026-10-27 17:37] [Claude]
+* Claimed task `TASK-013` (Split notebooks into colab/ and global/ with sibling-sync rule)
+
+### [2026-10-27 17:39] [Claude]
+* Notebooks split into notebooks/colab/ (moved via git mv, unchanged) and notebooks/global/ (new Jupyter-server twins: 01_global_*, 02_global_*; same cell numbers/order, %pip + subprocess instead of ! magics, no google.colab/content paths, CUDA/cmake/Ollama checks, Windows-safe). NEW RULE 7 (ADR-007, in all agent files via agent_hub sync): any change to a colab/ or global/ notebook MUST be mirrored to its sibling in the same task. Global twins were syntax-checked only, not executed (no GPU here).
+
+### [2026-10-27 17:39] [Claude]
+* Completed `TASK-013`: colab/global notebook twins + sibling-sync rule (ADR-007, rule 7)
+
+### [2026-10-27 18:26] [Antigravity]
+* Completed TASK-012 & Release v0.1.0-alpha: Successfully ran 02_colab_qlora_finetune_gemma3.ipynb on Colab T4. LoRA fine-tuning (loss 3.50), GGUF Q4_K_M conversion (768.7MB), and Ollama build (sinmate-gemma3:1b 806MB) verified with interactive multi-persona chat. Emergent persona lexical grounding observed (ආදරෙන්, රසවත්, හෙමින්, බං, ඔව්). Established release v0.1.0-alpha and updated README.md with model evolution matrix, qualitative breakdown, and Git version switching guide.

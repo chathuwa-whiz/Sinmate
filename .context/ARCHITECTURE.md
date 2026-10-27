@@ -144,8 +144,13 @@ Sinmate/
 │       └── proactive/         # Spontaneous heartbeat loop
 │           ├── __init__.py
 │           └── heartbeat.py   # Background scheduler & event triggers
-├── notebooks/                 # Google Colab notebooks for training & benchmarks
-│   └── 01_colab_sinhala_tokenizer_benchmark.ipynb
+├── notebooks/                 # Training & benchmark notebooks, kept as twins (ADR-007)
+│   ├── colab/                 # Google Colab only (Colab secrets, `!` magics, /content, apt)
+│   │   ├── 01_colab_sinhala_tokenizer_benchmark.ipynb
+│   │   └── 02_colab_qlora_finetune_gemma3.ipynb
+│   └── global/                # Regular Jupyter servers (%pip, subprocess, cross-platform)
+│       ├── 01_global_sinhala_tokenizer_benchmark.ipynb
+│       └── 02_global_qlora_finetune_gemma3.ipynb
 ├── scripts/                   # Tooling, evaluation & agent sync
 │   ├── agent_hub.py           # Multi-agent orchestrator & state manager
 │   ├── evaluate_tokenizer.py  # Sinhala tokenizer fertility evaluator
@@ -170,7 +175,7 @@ Sinmate/
 Due to local hardware constraints when running or fine-tuning models like Gemma 3:
 1. **Google Colab (Compute Engine - Free T4 / Cloud GPUs)**:
    - Used for heavy tasks: Sinhala tokenizer fertility evaluation, synthetic dataset curation, QLoRA SFT training, DPO preference alignment, and 4-bit GGUF quantization export.
-   - Notebooks reside in `notebooks/` with Colab-optimized dependencies in `requirements-colab.txt`.
+   - Notebooks reside in `notebooks/colab/` with Colab-optimized dependencies in `requirements-colab.txt`. Each has a Jupyter-server twin in `notebooks/global/` for machines that are not Colab (needs an NVIDIA CUDA GPU for the QLoRA notebook). The twins must be updated together (ADR-007).
 2. **Mac & Windows Client Development**:
    - Code development, voice loop integration, and testing happen on developer laptops (macOS and Windows).
    - Zero Windows lock-in: Universal POSIX `./agent` shell script for macOS and Linux; `agent.bat`/`agent.ps1` for Windows; all core tooling in cross-platform Python.

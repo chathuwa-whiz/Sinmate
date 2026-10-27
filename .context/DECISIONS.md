@@ -63,3 +63,10 @@ This document records the architectural and technology decisions agreed upon for
   6. `Audio Output` (Sentence streaming to VITS TTS with full-duplex barge-in)
 * **Consequence**: Prevents tone-deaf blunders with zero added latency, maintaining sub-second voice turnaround on low-spec hardware.
 
+---
+
+### ADR-007: Twin Notebooks (`notebooks/colab/` + `notebooks/global/`)
+* **Status**: Accepted
+* **Context**: The Colab notebooks use Colab-only features (`google.colab.userdata` secrets, `!`/`%cd` shell magics, `/content` paths, `apt-get`, the Linux-only Ollama installer, `start_new_session`). Several cells fail or misbehave on a regular Jupyter server, especially on Windows/macOS.
+* **Decision**: Maintain every notebook twice. `notebooks/colab/NN_colab_<name>.ipynb` targets Google Colab; `notebooks/global/NN_global_<name>.ipynb` targets any regular Jupyter server (`%pip`, `subprocess` with `sys.executable`, no `google.colab`, Windows/macOS/Linux safe, clear errors when CUDA/cmake/Ollama are missing). Twins keep the same cell numbers and order; only environment-specific code differs. Any change to one twin MUST be applied to the other in the same task, and a new notebook is created in both folders.
+* **Consequence**: Notebooks run anywhere the project is developed, at the cost of double maintenance. Pairing is by `NN` prefix and name (`_colab_` ↔ `_global_`), so a stale twin is easy to spot with a cell-by-cell diff.
