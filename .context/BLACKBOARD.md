@@ -92,3 +92,6 @@
 
 ### [2026-10-27 11:26] [Antigravity]
 * Updated dataset with targeted batches: ingested 117 accepted dialogues and 117 DPO pairs. Generated data/train.jsonl (106), data/val.jsonl (11), data/dpo.jsonl (117). Emotion gaps closed: grief_and_loss 11 (9.4%), crisis_support 9 (7.7%), panic_and_anxiety 19 (16.2%), identity_honesty 10. All 63 tests pass.
+
+### [2026-10-27 11:58] [Antigravity]
+* Fixed Cell 5 error in notebooks/02_colab_qlora_finetune_gemma3.ipynb by updating to native TRL conversational format with assistant_only_loss=True (and legacy fallback). Also ensured tokenizer pad_token for safe batching and fixed Cell 10 Modelfile string escaping.
