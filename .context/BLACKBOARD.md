@@ -98,3 +98,6 @@
 
 ### [2026-10-27 12:07] [Antigravity]
 * Fixed Cell 8 in notebooks/02_colab_qlora_finetune_gemma3.ipynb by bypassing PEFT's torchao incompatibility check on Colab (<0.16.0), and added torchao>=0.16.0 to Cell 1.
+
+### [2026-10-27 12:36] [Antigravity]
+* Fixed Cell 9 issues in notebooks/02_colab_qlora_finetune_gemma3.ipynb: aligned vocab_size in config.json to resolve convert_hf_to_gguf AssertionError, and set cmake build parallelism to -j 2 to prevent Colab kernel OOM crashes.
