@@ -101,3 +101,6 @@
 
 ### [2026-10-27 12:36] [Antigravity]
 * Fixed Cell 9 issues in notebooks/02_colab_qlora_finetune_gemma3.ipynb: aligned vocab_size in config.json to resolve convert_hf_to_gguf AssertionError, and set cmake build parallelism to -j 2 to prevent Colab kernel OOM crashes.
+
+### [2026-10-27 13:15] [Antigravity]
+* Updated Cell 9 in notebooks/02_colab_qlora_finetune_gemma3.ipynb with dynamic path resolution (resolves 'is not a directory' error across /content vs /content/Sinmate), and added Cell 11 for real-time interactive multi-persona streaming chat.
