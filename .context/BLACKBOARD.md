@@ -107,3 +107,6 @@
 
 ### [2026-10-27 13:24] [Antigravity]
 * Fixed Cell 11 in notebooks/02_colab_qlora_finetune_gemma3.ipynb by setting TRANSFORMERS_NO_TF=1 and is_tf_available=False, resolving protobuf/tensorflow runtime_version ImportError during real-time model loading.
+
+### [2026-10-27 13:35] [Antigravity]
+* Added Cell 11 for automated Ollama installation, daemon startup, and sinmate-gemma3:1b model creation directly in Colab. Updated Cell 12 for real-time multi-persona chat with Ollama streaming and HF fallback.
