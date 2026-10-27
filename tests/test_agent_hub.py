@@ -38,6 +38,9 @@ class TestAgentHub(unittest.TestCase):
         self.assertTrue((REPO_ROOT / ".github" / "copilot-instructions.md").exists())
 
     def test_agent_hub_post(self):
+        blackboard_path = REPO_ROOT / ".context" / "BLACKBOARD.md"
+        orig_content = blackboard_path.read_text(encoding="utf-8")
+        self.addCleanup(lambda: blackboard_path.write_text(orig_content, encoding="utf-8"))
         test_msg = "Automated test message for blackboard verification."
         result = subprocess.run(
             [sys.executable, str(AGENT_HUB), "post", "--agent", "TestRunner", "--msg", test_msg],
@@ -46,7 +49,7 @@ class TestAgentHub(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertEqual(result.returncode, 0)
-        blackboard = (REPO_ROOT / ".context" / "BLACKBOARD.md").read_text(encoding="utf-8")
+        blackboard = blackboard_path.read_text(encoding="utf-8")
         self.assertIn(test_msg, blackboard)
 
 

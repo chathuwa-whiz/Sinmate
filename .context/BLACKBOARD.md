@@ -83,3 +83,12 @@
 
 ### [2026-10-27 01:06] [TestRunner]
 * Automated test message for blackboard verification.
+
+### [2026-10-27 09:44] [Antigravity]
+* Claimed task `TASK-009` (Teacher-batch ingest script (scripts/ingest_teacher_batches.py))
+
+### [2026-10-27 09:50] [Antigravity]
+* Completed `TASK-009`: Implemented scripts/ingest_teacher_batches.py and tests/test_ingest_teacher_batches.py; ingested 73 pilot dialogues into data/train.jsonl (66), val.jsonl (7), and dpo.jsonl (73), with category mapping, human review flag detection, and COMPACT_PERSONA_LINES system prompt injection. Fixed normalizer.py Yansaya regex typo, test_agent_hub blackboard pollution, and removed Example lines from PERSONA_PROMPTS.
+
+### [2026-10-27 11:26] [Antigravity]
+* Updated dataset with targeted batches: ingested 117 accepted dialogues and 117 DPO pairs. Generated data/train.jsonl (106), data/val.jsonl (11), data/dpo.jsonl (117). Emotion gaps closed: grief_and_loss 11 (9.4%), crisis_support 9 (7.7%), panic_and_anxiety 19 (16.2%), identity_honesty 10. All 63 tests pass.

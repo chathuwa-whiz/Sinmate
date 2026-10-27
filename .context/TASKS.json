@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project": "Sinmate",
-  "last_updated": "2026-10-26 19:35 UTC",
+  "last_updated": "2026-10-27 04:20 UTC",
   "tasks": [
     {
       "id": "TASK-001",
@@ -115,13 +115,14 @@
       "id": "TASK-009",
       "title": "Teacher-batch ingest script (scripts/ingest_teacher_batches.py)",
       "description": "Read reviewed teacher JSONL (output of scripts/apply_critic_verdicts.py, e.g. data/accepted_dialogs.jsonl). Validate schema + rules, map free-text categories onto the 9 ADR-006 categories (or drop the field), flag hearsay/health-claim/gendered lines for review, NFC, dedupe, inject the exact COMPACT_PERSONA_LINES system prompt per persona (one variant only), assign sinmate_NNNNN ids, split train/val, print stats vs the target mix in docs/dataset_generation_prompts.md. Also build DPO pairs from data/rejected_dialogs.jsonl (line n = nth accepted dialogue).",
-      "status": "todo",
-      "assigned_to": null,
+      "status": "done",
+      "assigned_to": "Antigravity",
       "locked_files": [],
       "tags": [
         "dataset",
         "tooling"
-      ]
+      ],
+      "completed_at": "2026-10-27 04:20 UTC"
     },
     {
       "id": "TASK-010",
